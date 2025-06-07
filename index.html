@@ -1,0 +1,239 @@
+<html>
+
+    <head>
+
+        <!-- lib -->
+        <script src="lib/html-import/html-import.js"></script>
+        
+        <script src="lib/pako/pako.js"></script>
+
+        <link rel="stylesheet" href="lib/micromodal/micromodal.css">
+        <script src="lib/micromodal/micromodal.js"></script>
+
+        <!-- res -->
+        <link rel="stylesheet" href="res/images/equips.css">
+
+        <!-- src -->
+        <link rel="stylesheet" href="src/styles/flex.css">
+        <link rel="stylesheet" href="src/styles/style.css">
+
+        <!-- components -->
+        <link rel="import" href="src/components/equip-picker/equip-picker.html">
+
+        <!-- index -->
+        <link rel="stylesheet" href="index.css">
+        <script src="index.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class="flex-rows flex-gap-16">
+
+            <!-- logo -->
+            <div class="flex-rows flex-grow flex-align-self-center flex-gap-8">
+                <br>
+                <div style="width: 1920px; background-color: #1E1E1E; text-align: center;">1920px</div>
+            </div>
+
+            <!-- server -->
+            <div class="flex-rows flex-grow flex-align-self-center flex-gap-8" style="width: 256px;">
+                <label for="server">SERVER</label>
+                <select id="server">
+                    <option value="latam">LATAM</option>
+                    <option value="bro" disabled>bRO (under construction)</option>
+                    <option value="iro" disabled>iRO (under construction)</option>                    
+                    <option value="kro" disabled>kRO (under construction)</option>
+                </select>
+            </div>
+
+            <!-- language -->
+            <div class="flex-rows flex-grow flex-align-self-center flex-gap-8" style="width: 256px;">
+                <label for="language">LANGUAGE</label>
+                <select id="language">
+                    <option value="pt">pt</option>
+                    <option value="en" disabled>en (under construction)</option>                    
+                    <option value="es" disabled>es (under construction)</option>
+                </select>
+            </div>
+
+            <!-- name -->
+            <div class="flex-rows flex-grow flex-align-self-center flex-gap-8" style="width: 256px;">
+                <label for="name">NAME</label>
+                <input type="text" id="name">
+            </div>
+
+            <!-- gender -->
+            <div class="flex-rows flex-grow flex-align-self-center flex-gap-8" style="width: 256px;">
+                <label for="gender">GENDER</label>
+                <div class="flex-columns flex-justify-content-center">
+                    <label for="m"><input type="radio" name="gender" id="m" value="m">M</label>
+                    <label for="f"><input type="radio" name="gender" id="f" value="f">F</label>
+                </div>
+            </div>
+
+            <!-- class / hair / equips / refinement / cards -->
+            <div class="box flex-columns flex-align-self-center flex-justify-content-center">
+
+                <!-- equips left column -->
+                <div class="flex-rows">
+                    <!-- top headgear -->
+                    <div class="flex-columns">
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="2229"></div>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Helm</label>
+                    </div>
+                    <!-- bottom headgear -->
+                    <div class="flex-columns">
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="2266"></div>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Bevor</label>
+                    </div>
+                    <!-- right hand weapon -->
+                    <div class="flex-columns">
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="1109"></div>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Sword</label>
+                    </div>
+                    <!-- robe -->
+                    <div class="flex-columns">
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="2506"></div>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Manteau</label>
+                    </div>
+                    <!-- acessory 1 -->
+                    <div class="flex-columns">
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="2601"></div>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Ring</label>
+                    </div>
+                </div>
+
+                <!-- character sprite / hair picker / class picker -->
+                <div>
+                    <img style="height: 120px; border: 1px solid #333;" src="res/images/placeholder.png" alt="placeholder">
+                </div>
+
+                <!-- equips right column -->
+                <div class="flex-rows">
+                    <!-- middle headgear -->
+                    <div class="flex-columns">
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Monocle</label>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="2239"></div>
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                    </div>
+                    <!-- armor -->
+                    <div class="flex-columns">
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Legionary Armor</label>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="2341"></div>
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                    </div>
+                    <!-- left hand weapon -->
+                    <div class="flex-columns">
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Steel Shield</label>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="2106"></div>
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                    </div>
+                    <!-- shoes -->
+                    <div class="flex-columns">
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Greaves</label>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="2411"></div>
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                    </div>
+                    <!-- accessory 2 -->
+                    <div class="flex-columns">
+                        <!-- name -->
+                        <label style="width: 160px; line-height: 24px; text-align: center;">Rosary</label>
+                        <!-- refinement -->
+                        <label style="width: 24px; line-height: 24px; text-align: center;">+12</label>
+                        <!-- icon -->
+                        <div class="equip-icon" data-id="2608"></div>
+                        <!-- cards -->
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                        <img style="width: 24px;" src="res/images/card.png" alt="card">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <equip-picker></equip-picker>
+
+    </body>
+
+</html>

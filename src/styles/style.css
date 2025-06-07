@@ -1,0 +1,15 @@
+label {
+    font-family: "Candara";
+    font-size: 14px;
+    font-weight: bold;
+}
+
+select:not(#lang), input:not([type="checkbox"]) {
+    background-color: black;
+    color: lightgray;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid darkgray;
+    padding: 8px;
+    font-weight: bold;
+}
