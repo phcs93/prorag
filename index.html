@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="res/images/equips.css">
 
         <!-- src -->
+        <script src="src/scripts/globals.js"></script>
         <link rel="stylesheet" href="src/styles/flex.css">
         <link rel="stylesheet" href="src/styles/style.css">
 
@@ -72,143 +73,25 @@
 
                 <!-- equips left column -->
                 <div class="flex-rows">
-                    <!-- top head -->
-                    <equip-display id="top-head" data-side="left" number="0" refinement="0" slot1="0" slot2="" slot3="" slot4=""></equip-display>
-                    <!-- bottom head -->
-                    <div class="flex-columns">
-                        <!-- cards -->
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <!-- icon -->
-                        <div class="equip-icon" data-id="2266"></div>
-                        <!-- refinement -->
-                        <label style="width: 32px; line-height: 32px; text-align: center;">+12</label>
-                        <!-- name -->
-                        <label style="width: 160px; line-height: 32px; text-align: center;">Bevor</label>
-                    </div>
-                    <!-- right hand weapon -->
-                    <div class="flex-columns">
-                        <!-- cards -->
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <!-- icon -->
-                        <div class="equip-icon" data-id="1109"></div>
-                        <!-- refinement -->
-                        <label style="width: 32px; line-height: 32px; text-align: center;">+12</label>
-                        <!-- name -->
-                        <label style="width: 160px; line-height: 32px; text-align: center;">Sword</label>
-                    </div>
-                    <!-- robe -->
-                    <div class="flex-columns">
-                        <!-- cards -->
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <!-- icon -->
-                        <div class="equip-icon" data-id="2506"></div>
-                        <!-- refinement -->
-                        <label style="width: 32px; line-height: 32px; text-align: center;">+12</label>
-                        <!-- name -->
-                        <label style="width: 160px; line-height: 32px; text-align: center;">Manteau</label>
-                    </div>
-                    <!-- acessory 1 -->
-                    <div class="flex-columns">
-                        <!-- cards -->
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <!-- icon -->
-                        <div class="equip-icon" data-id="2601"></div>
-                        <!-- refinement -->
-                        <label style="width: 32px; line-height: 32px; text-align: center;">+12</label>
-                        <!-- name -->
-                        <label style="width: 160px; line-height: 32px; text-align: center;">Ring</label>
-                    </div>
+                    <equip-display id="top-head" data-side="left" number="2229" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                    <equip-display id="bottom-head" data-side="left" number="2266" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                    <equip-display id="right-hand" data-side="left" number="1109" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                    <equip-display id="robe" data-side="left" number="2506" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                    <equip-display id="acessory1" data-side="left" number="2601" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
                 </div>
 
                 <!-- character sprite / hair picker / class picker -->
                 <div>
-                    <img style="height: 160px; border: 1px solid #333;" src="res/images/placeholder.png" alt="placeholder">
+                    <img style="height: calc(var(--control-size) * 5); border: 1px solid #333;" src="res/images/placeholder.png" alt="placeholder">
                 </div>
 
                 <!-- equips right column -->
                 <div class="flex-rows">
-                    <!-- middle headgear -->
-                    <div class="flex-columns">
-                        <!-- name -->
-                        <label style="width: 160px; line-height: 32px; text-align: center;">Monocle</label>
-                        <!-- refinement -->
-                        <label style="width: 32px; line-height: 32px; text-align: center;">+12</label>
-                        <!-- icon -->
-                        <div class="equip-icon" data-id="2239"></div>
-                        <!-- cards -->
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                    </div>
-                    <!-- armor -->
-                    <div class="flex-columns">
-                        <!-- name -->
-                        <label style="width: 160px; line-height: 32px; text-align: center;">Legionary Armor</label>
-                        <!-- refinement -->
-                        <label style="width: 32px; line-height: 32px; text-align: center;">+12</label>
-                        <!-- icon -->
-                        <div class="equip-icon" data-id="2341"></div>
-                        <!-- cards -->
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                    </div>
-                    <!-- left hand weapon -->
-                    <div class="flex-columns">
-                        <!-- name -->
-                        <label style="width: 160px; line-height: 32px; text-align: center;">Steel Shield</label>
-                        <!-- refinement -->
-                        <label style="width: 32px; line-height: 32px; text-align: center;">+12</label>
-                        <!-- icon -->
-                        <div class="equip-icon" data-id="2106"></div>
-                        <!-- cards -->
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                    </div>
-                    <!-- shoes -->
-                    <div class="flex-columns">
-                        <!-- name -->
-                        <label style="width: 160px; line-height: 32px; text-align: center;">Greaves</label>
-                        <!-- refinement -->
-                        <label style="width: 32px; line-height: 32px; text-align: center;">+12</label>
-                        <!-- icon -->
-                        <div class="equip-icon" data-id="2411"></div>
-                        <!-- cards -->
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                    </div>
-                    <!-- accessory 2 -->
-                    <div class="flex-columns">
-                        <!-- name -->
-                        <label style="width: 160px; line-height: 32px; text-align: center;">Rosary</label>
-                        <!-- refinement -->
-                        <label style="width: 32px; line-height: 32px; text-align: center;">+12</label>
-                        <!-- icon -->
-                        <div class="equip-icon" data-id="2608"></div>
-                        <!-- cards -->
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                        <img style="width: 32px;" src="res/images/card.png" alt="card">
-                    </div>
+                    <equip-display id="middle-head" data-side="right" number="2239" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                    <equip-display id="armor" data-side="right" number="2341" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                    <equip-display id="left-hand" data-side="right" number="2106" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                    <equip-display id="boots" data-side="right" number="2411" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                    <equip-display id="acessory2" data-side="right" number="2608" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
                 </div>
 
             </div>

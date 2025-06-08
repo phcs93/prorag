@@ -2,12 +2,25 @@ equip-display {
 
     div.equip-display {
 
+        label.name {
+            line-height: var(--control-size);
+            text-align: center;
+
+            width: calc(var(--control-size) * 5);
+        }
+
+        label.refinement {
+            line-height: var(--control-size);
+            width: var(--control-size);
+            text-align: center;
+        }
+
         div.slot {
-            width: 48px;
-            height: 48px;
+            width: var(--control-size);
+            height: var(--control-size);
             background-image: url("../../../res/images/card.png");
             image-rendering: pixelated;
-            background-size: 48px;
+            background-size: var(--control-size);
         }
 
     }

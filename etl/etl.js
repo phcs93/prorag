@@ -91,18 +91,35 @@ async function generateEquipIconSheet() {
     .composite(map)
     .toFile("../res/images/equips.png");
 
+    // const css = [`
+    //     div.equip-icon {
+    //         background-image: url('equips.png');
+    //         background-repeat: no-repeat;            
+    //         image-rendering: pixelated;
+    //         width: ${size}px;
+    //         height: ${size}px;
+    //     }
+    // `];
+
+    // css.push(...map.map((s, i) => {
+    //     return `div.equip-icon[data-id="${icons[i].split(".")[0]}"] { background-position: -${s.left}px -${s.top}px; }`;
+    // }));
+
     const css = [`
         div.equip-icon {
             background-image: url('equips.png');
             background-repeat: no-repeat;            
             image-rendering: pixelated;
-            width: ${size}px;
-            height: ${size}px;
+            width: var(--control-size); 
+            height: var(--control-size);
+            background-size: calc(${sqrt} * var(--control-size));
         }
     `];
 
-    css.push(...map.map((s, i) => {
-        return `div.equip-icon[data-id="${icons[i].split(".")[0]}"] { background-position: -${s.left}px -${s.top}px; }`;
+    css.push(...map.map((_, i) => {
+        const x = i % sqrt;
+        const y = Math.floor(i / sqrt);
+        return `div.equip-icon[data-id="${icons[i].split(".")[0]}"] { background-position: calc(-${x} * var(--control-size)) calc(-${y} * var(--control-size)); }`;
     }));
 
     fs.writeFileSync("../res/images/equips.css", css.join("\r\n"));
@@ -140,6 +157,8 @@ async function parseEquipDatabase() {
     const database = {
         equips: equips
     };
+
+    //fs.writeFileSync("../bin/database-latam-pt.json", JSON.stringify(database, null, "\t"));
 
     const compressedDatabase = zlib.gzipSync(JSON.stringify(database));
     fs.writeFileSync("../bin/database-latam-pt-json.gzip", compressedDatabase);
