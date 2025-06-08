@@ -1,0 +1,31 @@
+equip-display {
+
+    div.equip-display {
+
+        div.slot {
+            width: 48px;
+            height: 48px;
+            background-image: url("../../../res/images/card.png");
+            image-rendering: pixelated;
+            background-size: 48px;
+        }
+
+    }
+
+    &[data-side="left"] label.name { order: 7; }
+    &[data-side="left"] label.refinement { order: 6; }
+    &[data-side="left"] div.equip-icon { order: 5; }
+    &[data-side="left"] div.slot1 { order: 4; }
+    &[data-side="left"] div.slot2 { order: 3; }
+    &[data-side="left"] div.slot3 { order: 2; }
+    &[data-side="left"] div.slot4 { order: 1; }
+
+    &[data-side="right"] label.name { order: 1; }
+    &[data-side="right"] label.refinement { order: 2; }
+    &[data-side="right"] div.equip-icon { order: 3; }
+    &[data-side="right"] div.slot1 { order: 4; }
+    &[data-side="right"] div.slot2 { order: 5; }
+    &[data-side="right"] div.slot3 { order: 6; }
+    &[data-side="right"] div.slot4 { order: 7; }
+
+}

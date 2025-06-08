@@ -60,6 +60,8 @@ async function cleanInvalidEquipIcons() {
 
 async function generateEquipIconSheet() {
 
+    // TODO => 24 que precisa virar 32 no css
+
     const dir = "raw/icons/equips"
     const icons = fs.readdirSync(dir);
     const length = icons.length;
