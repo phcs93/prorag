@@ -5,22 +5,41 @@ equip-display {
         label.name {
             line-height: var(--control-size);
             text-align: center;
-
             width: calc(var(--control-size) * 5);
+            &:hover {
+                cursor: pointer;
+                border-radius: 10px;
+                background-color: #1E1E1E;
+            }
         }
 
         label.refinement {
             line-height: var(--control-size);
             width: var(--control-size);
             text-align: center;
+            &:hover {
+                cursor: pointer;
+                border-radius: 10px;
+                background-color: #1E1E1E;
+            }
         }
 
         div.slot {
             width: var(--control-size);
             height: var(--control-size);
-            background-image: url("../../../res/images/card.png");
+            
             image-rendering: pixelated;
             background-size: var(--control-size);
+            &:hover {
+                cursor: pointer;
+                border-radius: 10px;
+                background-color: #1E1E1E;
+            }
+
+            &[data-id=""] { background-image: url("../../../res/images/no-slot.png"); }
+            &[data-id="0"] { background-image: url("../../../res/images/empty-slot.png"); }
+            &:not([data-id=""]):not([data-id="0"]) { background-image: url("../../../res/images/card.png"); }
+
         }
 
     }

@@ -134,11 +134,21 @@ async function parseEquipDatabase() {
 
     return equipsJson.reduce((dic, e) => {
 
-        dic[e.Id] = {
-            id: e.Id,
-            name: luaJson[e.Id]?.identifiedDisplayName,
-            description: luaJson[e.Id]?.identifiedDescriptionName.join("\r\n")
-        };
+        // if equip exists in client db
+        if (luaJson[e.Id]) {
+
+            dic[e.Id] = {
+                id: e.Id,
+                name: luaJson[e.Id].identifiedDisplayName,
+                description: luaJson[e.Id].identifiedDescriptionName.join("\r\n"),
+                type: e.Type,
+                jobs: e.Jobs,
+                locations: e.Locations,
+                level: e.EquipLevelMin || 0,
+                slots: e.Slots || 0
+            };
+
+        }
 
         return dic;
 
@@ -158,7 +168,8 @@ async function parseEquipDatabase() {
         equips: equips
     };
 
-    //fs.writeFileSync("../bin/database-latam-pt.json", JSON.stringify(database, null, "\t"));
+    // provisório
+    fs.writeFileSync("../bin/database-latam-pt.json", JSON.stringify(database, null, "\t"));
 
     const compressedDatabase = zlib.gzipSync(JSON.stringify(database));
     fs.writeFileSync("../bin/database-latam-pt-json.gzip", compressedDatabase);
