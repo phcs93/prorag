@@ -1,6 +1,6 @@
-equip-display {
+equipment-display {
 
-    div.equip-display {
+    div.equipment-display {
 
         label.name {
             line-height: var(--control-size);

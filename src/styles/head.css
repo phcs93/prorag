@@ -1,0 +1,13 @@
+/* div.class-sprite::before {
+    content: "";
+    position: relative;
+    display: block;
+    top: 20;
+    left: 20;
+    width: 30px;
+    height: 30px;
+    z-index: 9999;
+    background-image: url("../../res/images/head.png");
+    /* background-size: cover; */
+    /* pointer-events: none; */
+} */

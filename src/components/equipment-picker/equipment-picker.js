@@ -1,8 +1,8 @@
-customElements.define("equip-picker", class EquipPicker extends HTMLElement {
+customElements.define("equipment-picker", class EquipmentPicker extends HTMLElement {
 
     constructor() {
         super();
-        this.appendChild(document.getElementById("equip-picker").content.cloneNode(true));
+        this.appendChild(document.getElementById("equipment-picker").content.cloneNode(true));
         switch (this.id) {
             case "top-head": {
                 // show only top head items

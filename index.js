@@ -1,7 +1,7 @@
-window.addEventListener('DOMContentLoaded', async function() {
+window.addEventListener("DOMContentLoaded", async function() {
 
     // store database in memory as gzip
-    globals.database.gzip = await (await fetch("bin/database-latam-pt-json.gzip")).arrayBuffer();
+    globals.database.gzip = await (await fetch("res/databases/database-latam-pt-json.gzip")).arrayBuffer();
 
     // init micromodal lib
     MicroModal.init({

@@ -11,16 +11,20 @@
         <script src="lib/micromodal/micromodal.js"></script>
 
         <!-- res -->
-        <link rel="stylesheet" href="res/images/equips.css">
+        <link rel="stylesheet" href="res/images/sheets/classes-sprites.css">
+        <link rel="stylesheet" href="res/images/sheets/equipment-icons.css">
 
         <!-- src -->
+        <script src="src/scripts/prototypes/String.js"></script>
         <script src="src/scripts/globals.js"></script>
+        <link rel="stylesheet" href="src/styles/head.css">
         <link rel="stylesheet" href="src/styles/flex.css">
         <link rel="stylesheet" href="src/styles/style.css">
 
         <!-- components -->
-        <link rel="import" href="src/components/equip-display/equip-display.html">
-        <link rel="import" href="src/components/equip-picker/equip-picker.html">
+        <link rel="import" href="src/components/equipment-display/equipment-display.html">
+        <link rel="import" href="src/components/equipment-picker/equipment-picker.html">
+        <link rel="import" href="src/components/gender-display/gender-display.html">
 
         <!-- index -->
         <link rel="stylesheet" href="index.css">
@@ -29,6 +33,8 @@
     </head>
 
     <body>
+
+        <equipment-picker></equipment-picker>
 
         <div class="flex-rows flex-gap-16">
 
@@ -59,39 +65,39 @@
                 </select>
             </div>
 
-            <!-- gender -->
-            <div class="flex-rows flex-grow flex-align-self-center flex-gap-8" style="width: 256px;">
-                <label for="gender">GENDER</label>
-                <div class="flex-columns flex-justify-content-center">
-                    <label for="m"><input type="radio" name="gender" id="m" value="m">M</label>
-                    <label for="f"><input type="radio" name="gender" id="f" value="f">F</label>
-                </div>
-            </div>
+            <!-- first box -->
+            <div class="box flex-rows flex-align-self-center flex-justify-content-center flex-gap-16">
 
-            <!-- class / hair / equips / refinement / cards -->
-            <div class="box flex-columns flex-align-self-center flex-justify-content-center flex-gap-16">
-
-                <!-- equips left column -->
-                <div class="flex-rows">
-                    <equip-display id="top-head" data-side="left" number="2229" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
-                    <equip-display id="bottom-head" data-side="left" number="2266" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
-                    <equip-display id="right-hand" data-side="left" number="1109" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
-                    <equip-display id="garment" data-side="left" number="2506" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
-                    <equip-display id="right-acessory" data-side="left" number="2601" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                <!-- gender -->
+                <div class="flex-rows flex-align-self-center">
+                    <gender-display gender="m"></gender-display>
                 </div>
 
-                <!-- character sprite / hair picker / class picker -->
-                <div>
-                    <img style="height: calc(var(--control-size) * 5); border: 1px solid #333;" src="res/images/placeholder.png" alt="placeholder">
-                </div>
+                <div class="flex-columns flex-align-self-center flex-justify-content-center flex-gap-16">
 
-                <!-- equips right column -->
-                <div class="flex-rows">
-                    <equip-display id="middle-head" data-side="right" number="2239" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
-                    <equip-display id="armor" data-side="right" number="2341" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
-                    <equip-display id="left-hand" data-side="right" number="2106" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
-                    <equip-display id="boots" data-side="right" number="2411" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
-                    <equip-display id="left-acessory" data-side="right" number="2608" refinement="4" slot1="0" slot2="" slot3="" slot4=""></equip-display>
+                    <!-- equips left column -->
+                    <div class="flex-rows">
+                        <equipment-display id="top-head" data-side="left" number="2229" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                        <equipment-display id="bottom-head" data-side="left" number="2266" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                        <equipment-display id="right-hand" data-side="left" number="1109" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                        <equipment-display id="garment" data-side="left" number="2506" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                        <equipment-display id="right-acessory" data-side="left" number="2601" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                    </div>
+
+                    <!-- character sprite / hair picker / class picker -->
+                    <div>
+                        <div class="class-sprite" data-id="monk-m" style="border: 1px solid #333; border-radius: 10px;"></div>
+                    </div>
+
+                    <!-- equips right column -->
+                    <div class="flex-rows">
+                        <equipment-display id="middle-head" data-side="right" number="2239" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                        <equipment-display id="armor" data-side="right" number="2341" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                        <equipment-display id="left-hand" data-side="right" number="2106" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                        <equipment-display id="boots" data-side="right" number="2411" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                        <equipment-display id="left-acessory" data-side="right" number="2608" refinement="4" slot1="" slot2="" slot3="" slot4=""></equipment-display>
+                    </div>
+
                 </div>
 
             </div>

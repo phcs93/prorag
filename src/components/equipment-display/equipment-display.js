@@ -1,8 +1,8 @@
-customElements.define("equip-display", class EquipDisplay extends HTMLElement {
+customElements.define("equipment-display", class EquipmentDisplay extends HTMLElement {
 
     constructor() {
         super();
-        this.appendChild(document.getElementById("equip-display").content.cloneNode(true));
+        this.appendChild(document.getElementById("equipment-display").content.cloneNode(true));
     }
 
     // connectedCallback() { }
@@ -35,7 +35,13 @@ customElements.define("equip-display", class EquipDisplay extends HTMLElement {
                 break;
             }
             case "slot1": case "slot2": case "slot3": case "slot4": {
-                this.querySelector(`div.${property}`).dataset.id = newValue;
+                // if the value is valid and the slot is available
+                if (newValue != "" && newValue != null && 
+                    this.querySelector(`div.${property}`).dataset.id != "" &&
+                    this.querySelector(`div.${property}`).dataset.id != null
+                ) {
+                    this.querySelector(`div.${property}`).dataset.id = newValue;
+                }
                 break;
             }
         }

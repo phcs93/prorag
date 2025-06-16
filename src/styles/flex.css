@@ -57,6 +57,16 @@ div.flex-justify-content-space-between {
     justify-content: space-between;
 }
 
+div.flex-justify-content-space-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+div.flex-justify-content-space-evenly {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 div.flex-align-items-center {
     display: flex;
     align-items: center;

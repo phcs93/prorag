@@ -21,8 +21,9 @@
 .modal__container {
   background-color: #050505;
   padding: 30px;
-  max-width: 500px;
-  max-height: 100vh;
+  /* max-width: 500px; */
+  max-width: 1024px;
+  max-height: calc(100vh - 10vh);
   border-radius: 10px;
   overflow-y: auto;
   box-sizing: border-box;

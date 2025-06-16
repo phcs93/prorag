@@ -13,3 +13,18 @@ select:not(#lang), input:not([type="checkbox"]) {
     padding: 8px;
     font-weight: bold;
 }
+
+::-webkit-scrollbar {    
+    background-color: transparent;
+    height: 4px;
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;    
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #434343;
+    border-radius: 10px;
+}

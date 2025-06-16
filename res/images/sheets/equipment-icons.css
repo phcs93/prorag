@@ -1,5 +1,5 @@
 div.equip-icon {
-    background-image: url('equips.png');
+    background-image: url("equipment-icons.png");
     background-repeat: no-repeat;            
     image-rendering: pixelated;
     width: var(--control-size); 
