@@ -38,36 +38,64 @@ async function extractGRF() {
 
 }
 
+function generateEquipmentDatabase() {
+
+    // prepare localized item names and descriptions
+    const itemInfo = LUA.parse(`return ${fs.readFileSync("raw/lua/iteminfo.lua").toString("utf-8").slice(6)}`);
+
+    // parse equipment from rathena while getting localized names and decriptions
+    return YAML.load(fs.readFileSync("git/rathena/db/re/item_db_equip.yml").toString("utf-8")).Body.reduce((dic, e) => {
+        if (itemInfo[e.Id]) {
+            dic[e.Id] = {
+                id: e.Id,
+                name: itemInfo[e.Id].identifiedDisplayName,
+                description: itemInfo[e.Id].identifiedDescriptionName.join("\r\n"),
+                type: e.Type,
+                jobs: e.Jobs,
+                locations: e.Locations,
+                level: e.EquipLevelMin || 0,
+                slots: e.Slots || 0
+            };
+        }
+        return dic;
+    }, {});
+
+}
+
+function generateSkillDatabase() {
+
+    // get skill ids enum
+    const skillIds = LUA.parse(`return ${fs.readFileSync("raw/lua/skillid.lua").toString("utf-8").slice(7)}`);
+
+    // function to replace skill enums with skill ids
+    const replaceEnum = lua => Object.keys(skillIds).reduce((v, s) => v.replace(`[SKID.${s}]`, `[${skillIds[s]}]`), lua);
+
+    // prepare localized skill names and descriptions
+    const skillInfo = LUA.parse(replaceEnum(`return ${fs.readFileSync("raw/lua/skillinfo.lua").toString("utf-8").slice(17)}`));
+
+    // extract skill names from description and transform entry into object
+    for (const id of Object.keys(skillInfo)) {
+        skillInfo[id] = {
+            id: parseInt(id),
+            name: (skillInfo[id][0]?.split("^")[0].trim()) ?? id,
+            description: skillInfo[id].join("\r\n")
+        }
+    }
+
+    return skillInfo;
+
+}
+
 async function generateDatebase() {
 
     // clone rathena git repository
     if (!fs.existsSync("git")) fs.mkdirSync("git");
     if (!fs.existsSync("git/rathena")) cp.execSync("git clone https://github.com/rathena/rathena.git", { stdio: [0, 1, 2], cwd: "git" });
-
-    // prepare localized item names and descriptions
-    const itemInfo = LUA.parse(`return ${fs.readFileSync("raw/lua/iteminfo.lua").toString("utf-8").slice(6)}`);
-
+   
     // generate database object
     const database = {
-
-        // parse equipment from rathena while getting localized names and decriptions
-        equipment: YAML.load(fs.readFileSync("git/rathena/db/re/item_db_equip.yml").toString("utf-8")).Body.reduce((dic, e) => {
-            if (itemInfo[e.Id]) {
-                dic[e.Id] = {
-                    id: e.Id,
-                    name: itemInfo[e.Id].identifiedDisplayName,
-                    description: itemInfo[e.Id].identifiedDescriptionName.join("\r\n"),
-                    type: e.Type,
-                    jobs: e.Jobs,
-                    locations: e.Locations,
-                    level: e.EquipLevelMin || 0,
-                    slots: e.Slots || 0
-                };
-            }
-            return dic;
-        }, {}),
-
-        skills: {}
+        equipment: generateEquipmentDatabase(),
+        skills: generateSkillDatabase()
 
     };
 
