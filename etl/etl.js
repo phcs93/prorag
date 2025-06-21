@@ -21,40 +21,62 @@ async function extractGRF() {
     const grfclPath = path.resolve(__dirname, '../bin/grfcl.exe');
 
     // extract main grf    
-    const extractPath = path.resolve(__dirname, '../etl/grf');
-    const cmd = `start "" "${grfclPath}" -open ${grfPath} -extractGrf ${extractPath}`;
-    console.log("extracting grf...", cmd);
-    cp.execSync(cmd, {cwd: "C:/GIT/prorag/bin" });    
+    // const extractPath = path.resolve(__dirname, '../etl/grf');
+    // const cmd = `start "" "${grfclPath}" -open ${grfPath} -extractGrf ${extractPath}`;
+    // console.log("extracting grf...", cmd);
+    // cp.execSync(cmd, {cwd: "C:/GIT/prorag/bin" });    
 
     // decompile lub files to lua
-    fs.mkdirSync("raw/lua", {recursive: true});    
-    for (const lubFile of Object.keys(lubPaths)) {
-        const lubPath = path.resolve(__dirname, lubPaths[lubFile]);
-        const luaPath = path.resolve(__dirname, `raw/lua/${lubFile}.lua`);
-        const cmd = `start "" "${grfclPath}" -lubDecompile "${lubPath}" "${luaPath}"`;
-        console.log("decompiling lub...", cmd);
-        cp.execSync(cmd, {cwd: "C:/GIT/prorag/bin" });
-    }
+    // fs.mkdirSync("raw/lua", {recursive: true});    
+    // for (const lubFile of Object.keys(lubPaths)) {
+    //     const lubPath = path.resolve(__dirname, lubPaths[lubFile]);
+    //     const luaPath = path.resolve(__dirname, `raw/lua/${lubFile}.lua`);
+    //     const cmd = `start "" "${grfclPath}" -lubDecompile "${lubPath}" "${luaPath}"`;
+    //     console.log("decompiling lub...", cmd);
+    //     cp.execSync(cmd, {cwd: "C:/GIT/prorag/bin" });
+    // }
+
+    // fix "iteminfo_new" encoding
+    // const corrupted = fs.readFileSync("raw/lua/itemInfo.lua").toString("utf-8");
+    // const fixed = Buffer.from(corrupted, "latin1").toString("utf8");
+    // fs.writeFileSync("raw/lua/itemInfo.lua", fixed);
 
 }
 
 function generateEquipmentDatabase() {
 
+    console.log("generateEquipmentDatabase()");
+
+    const fixEncoding = s => s
+            .replace(/Ã“/g, "Ó")
+            .replace(/Ã‰/g, "É")
+            .replace(/Ã/g, "Ç")
+            .replace(/Ãª/g, "ê")
+            .replace(/Ã¡/g, "á")
+            .replace(/Ã£/g, "ã")
+            .replace(/Ã³/g, "ó")
+            .replace(/Ãº/g, "ú")
+            .replace(/Ã¢/g, "â")
+            .replace(/Ã©/g, "é")
+            .replace(/Ã­/g, "í")
+            .replace(/Ã§/g, "ç");
+
     // prepare localized item names and descriptions
-    const itemInfo = LUA.parse(`return ${fs.readFileSync("raw/lua/iteminfo.lua").toString("utf-8").slice(6)}`);
+    const itemInfo = LUA.parse(`return ${fs.readFileSync("raw/lua/itemInfo.lua").toString("utf-8").slice(6)}`);    
 
     // parse equipment from rathena while getting localized names and decriptions
     return YAML.load(fs.readFileSync("git/rathena/db/re/item_db_equip.yml").toString("utf-8")).Body.reduce((dic, e) => {
-        if (itemInfo[e.Id]) {
+        if (itemInfo[e.Id] && itemInfo[e.Id].identifiedDisplayName && itemInfo[e.Id].identifiedDescriptionName.length) {
             dic[e.Id] = {
                 id: e.Id,
-                name: itemInfo[e.Id].identifiedDisplayName,
-                description: itemInfo[e.Id].identifiedDescriptionName.join("\r\n"),
+                name: fixEncoding(itemInfo[e.Id].identifiedDisplayName),
+                description: fixEncoding(itemInfo[e.Id].identifiedDescriptionName.join("\r\n")),
                 type: e.Type,
                 jobs: e.Jobs,
                 locations: e.Locations,
                 level: e.EquipLevelMin || 0,
-                slots: e.Slots || 0
+                slots: e.Slots || 0,
+                element: e.Type === "Weapon" ? (/bonus bAtkEle,Ele_(\w+);/.exec(e.Script)?.[1] || null) : null
             };
         }
         return dic;
@@ -64,6 +86,8 @@ function generateEquipmentDatabase() {
 
 function generateSkillDatabase() {
 
+    console.log("generateSkillDatabase()");
+
     // get skill ids enum
     const skillIds = LUA.parse(`return ${fs.readFileSync("raw/lua/skillid.lua").toString("utf-8").slice(7)}`);
 
@@ -71,7 +95,7 @@ function generateSkillDatabase() {
     const replaceEnum = lua => Object.keys(skillIds).reduce((v, s) => v.replace(`[SKID.${s}]`, `[${skillIds[s]}]`), lua);
 
     // prepare localized skill names and descriptions
-    const skillInfo = LUA.parse(replaceEnum(`return ${fs.readFileSync("raw/lua/skillinfo.lua").toString("utf-8").slice(17)}`));
+    const skillInfo = LUA.parse(replaceEnum(`return ${fs.readFileSync("raw/lua/skillInfo.lua").toString("utf-8").slice(17)}`));
 
     // extract skill names from description and transform entry into object
     for (const id of Object.keys(skillInfo)) {
@@ -82,7 +106,18 @@ function generateSkillDatabase() {
         }
     }
 
-    return skillInfo;
+    // parse equipment from rathena while getting localized names and decriptions
+    return YAML.load(fs.readFileSync("git/rathena/db/re/skill_db.yml").toString("utf-8")).Body.reduce((dic, s) => {
+        if (skillInfo[s.Id]) {
+            dic[s.Id] = {
+                id: s.Id,
+                name: skillInfo[s.Id].name,
+                description: skillInfo[s.Id].description,
+                maxlevel: s.MaxLevel
+            };
+        }
+        return dic;
+    }, {});
 
 }
 
@@ -96,7 +131,6 @@ async function generateDatebase() {
     const database = {
         equipment: generateEquipmentDatabase(),
         skills: generateSkillDatabase()
-
     };
 
     // provisório

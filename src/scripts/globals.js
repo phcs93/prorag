@@ -10,10 +10,11 @@ globals = {
 
         // query operations
         query: {
+            getItem: query => Object.values(globals.database.unzip().equipment).filter(e => query(e)),
             getItemById: id => globals.database.unzip().equipment[id],
-            getItemByDescription: description => Object.values(globals.database.unzip().equipment).filter(e => e.description.flatten().indexOf(description.flatten()) > -1),
+            getItemByDescription: description => Object.values(globals.database.unzip().equipment).filter(i => i.description.flatten().indexOf(description.flatten()) > -1),
             getSkillById: id => globals.database.unzip().skills[id],
-            getSkillByDescription: description => Object.values(globals.database.unzip().skills).filter(e => e.description.flatten().indexOf(description.flatten()) > -1)
+            getSkillByDescription: description => Object.values(globals.database.unzip().skills).filter(s => s.description.flatten().indexOf(description.flatten()) > -1)
         }
 
     }
